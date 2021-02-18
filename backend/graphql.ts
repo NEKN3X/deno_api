@@ -1,7 +1,7 @@
-import { applyGraphQL, gql } from "https://deno.land/x/oak_graphql/mod.ts";
+import { gql } from "https://deno.land/x/oak_graphql/mod.ts";
 
 // Graphql type
-export const typeDefs = (gql as any)`
+export const typeDefs = gql`
   type User {
     username: String!
     email: String!
@@ -26,14 +26,11 @@ export const resolvers = {
   },
   Mutation: {
     signup: (
-      parent: any,
       {
         username,
         email,
         password,
       }: { username: string; email: string; password: string },
-      ctx: any,
-      info: any,
     ) => {
       const newUser = { username, email, password };
       users.push(newUser);
